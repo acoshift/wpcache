@@ -44,7 +44,7 @@ spec:
             path: config.yaml
       containers:
       - name: wpcache
-        image: acoshift/wpcache:1.0.0
+        image: acoshift/wpcache:0.0.1
         args:
         - -config
         - /config/config.yaml

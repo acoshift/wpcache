@@ -33,6 +33,11 @@ var (
 type hostMux map[string]http.Handler
 
 func (x hostMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/healthz" {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("ok"))
+	}
+
 	host := r.Host
 	if len(host) == 0 {
 		host = r.Header.Get(header.XForwardedHost)
@@ -122,4 +127,5 @@ func main() {
 			}),
 		)(h)
 	}
+	http.ListenAndServe(":8080", mux)
 }
