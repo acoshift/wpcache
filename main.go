@@ -23,7 +23,7 @@ type config struct {
 	Hosts []struct {
 		Host   string `yaml:"host"`
 		Target string `yaml:"target"`
-	} `yaml:"rules"`
+	} `yaml:"hosts"`
 }
 
 var (
