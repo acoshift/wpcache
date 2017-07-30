@@ -1,5 +1,5 @@
 IMAGE=acoshift/wpcache
-TAG=1.0.0
+TAG=0.0.1
 GOLANG_VERSION=1.8
 REPO=github.com/acoshift/wpcache
 

@@ -30,21 +30,24 @@ metadata:
     app: wpcache
 spec:
   replicas: 1
-  volumes:
-  - name: config
-    configMap:
-      name: wpcache
-      items:
-      - key: config.yaml
-        path: config.yaml
   template:
     metadata:
       labels:
         app: wpcache
     spec:
+      volumes:
+      - name: config
+        configMap:
+          name: wpcache
+          items:
+          - key: config.yaml
+            path: config.yaml
       containers:
       - name: wpcache
         image: acoshift/wpcache:1.0.0
+        args:
+        - -config
+        - /config/config.yaml
         livenessProbe:
           httpGet:
             path: /healthz
@@ -60,4 +63,4 @@ spec:
             memory: 20Mi
         volumeMounts:
         - name: config
-          mounthPath: /config
+          mountPath: /config
