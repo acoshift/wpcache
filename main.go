@@ -42,10 +42,13 @@ func (x hostMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if len(host) == 0 {
 		host = r.Header.Get(header.XForwardedHost)
 	}
-	if len(host) == 0 {
+	h, ok := x[host]
+	if !ok {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("wpcache host not found"))
+		return
 	}
+	h.ServeHTTP(w, r)
 }
 
 func modifyResponse(resp *http.Response) error {
