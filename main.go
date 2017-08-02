@@ -56,10 +56,10 @@ func modifyResponse(resp *http.Response) error {
 
 	if resp.Request != nil {
 		// remove cookie if not admin section
-		u := resp.Request.URL
-		if !isAdminSection(u) {
-			resp.Header.Del(header.SetCookie)
-		}
+		// u := resp.Request.URL
+		// if !isAdminSection(u) {
+		// 	resp.Header.Del(header.SetCookie)
+		// }
 	}
 	return nil
 }
